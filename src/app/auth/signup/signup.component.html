@@ -16,7 +16,9 @@
         required
         #emailInput="ngModel"
       />
-      <mat-error *ngIf="!emailInput.hasError('required')">Invalid email</mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')"
+        >Invalid email</mat-error
+      >
     </mat-form-field>
     <mat-form-field hintLabel="Should be at least 6 characters long">
       <input
@@ -30,10 +32,17 @@
       />
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Your birthdate" [matDatepicker]="picker">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <input 
+      matInput 
+      placeholder="Your birthdate" 
+      [matDatepicker]="picker" 
+      [max]="maxDate"
+      ngModel name="birthdate" required />
+      <mat-datepicker-toggle  matSuffix [for]="picker">
+    </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary">Submit</button>
+      <mat-checkbox ngModel name="agree" required>Agree to terms and conditions</mat-checkbox>
+    <button style="margin-top: 10px;" type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
   </form>
 </section>
