@@ -2,17 +2,11 @@
     <mat-card fxFlex.xs="100%" fxFlex="400px">
         <mat-card-title fxLayoutAlign="center">Start working out!</mat-card-title>
         <mat-card-content fxLayoutAlign="center">
-            <mat-form-field>
-                <mat-select placeholder="Select training">
-                  <mat-option value="crunches">
-                    crunches
+            <mat-form-field >
+                <mat-select placeholder="Select exercise" >
+                  <mat-option *ngFor="let exercise of exercises" value="{{ exercise.id}}">
+                    {{ exercise.name }}
                   </mat-option>
-                  <mat-option value="benchpress">
-                      bench press
-                    </mat-option>
-                    <mat-option value="pullups">
-                        pullup
-                      </mat-option>
                 </mat-select>
               </mat-form-field>
         </mat-card-content>

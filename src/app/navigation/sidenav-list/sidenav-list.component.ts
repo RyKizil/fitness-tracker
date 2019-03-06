@@ -21,6 +21,7 @@ authSub: Subscription;
   }
  onClose(){
   this.closeSidenav.emit();
+  this.authService.logout();
  }
  ngOnDestroy(){
    this.authSub.unsubscribe();

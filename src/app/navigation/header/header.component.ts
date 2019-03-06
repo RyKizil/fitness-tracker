@@ -22,6 +22,11 @@ authSubscription: Subscription;
   onToggle(){
     this.sidenavToggle.emit();
   }
+
+  onLogout(){
+    this.authService.logout();
+  }
+
   ngOnDestroy(){
     //to prevent memory leak/ free memory after subscription is fullfilled
     this.authSubscription.unsubscribe();
