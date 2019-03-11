@@ -34,6 +34,7 @@
       >wrong password</mat-error
     >
     </mat-form-field>
-    <button style="margin-top: 10px;" type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Log in</button>
+    <button *ngIf="!isLoading" style="margin-top: 10px;" type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Log in</button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
   </form>
 </section>

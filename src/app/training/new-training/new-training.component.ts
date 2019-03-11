@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 
 
 
+
 @Component({
   selector: 'app-new-training',
   templateUrl: './new-training.component.html',
@@ -19,38 +20,23 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
 
 exercises: Exercise[];
 exerciseSubscription: Subscription;
+loading = false;
+
 
   constructor(private trainingService: TrainingService) { }
 
   ngOnInit() {
     
-    this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercise =>  this.exercises = exercise);
-    this.trainingService.fetchExercises();
-    // this.exercises = this.db.collection("availableExercises")
-    // .snapshotChanges()
-    // // .subscribe(element => {
-    // //   for (const e of element) {
-    // //     let arr = e.payload.doc.data();
-    // //     this.exercises.push()
-    // //     console.log(e.payload.doc.data());
-    // //   }
-    // // });
-    // .map(docArray => {
-    //   return docArray.map(el => {
-        
-    //       // id: doc.payload.doc.id,
-    //       // name: doc.payload.doc.data(),
-    //       // duration: doc.payload.doc.data(),
-    //       // calories: doc.payload.doc.data()
-    //       //console.log(doc.payload.doc.data())
-    //       const data = el.payload.doc.data() as Exercise;
-    //       const id = el.payload.doc.id;
-    //       return { id, ...data};
-        
-    //   });
-      
-    // });
+    this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercise => {
+      if(exercise != null){
+        this.exercises = exercise;
+        this.loading = true;
+      }else {
+        this.loading = false;
+      }
+    });
     
+    this.trainingService.fetchExercises();
   }
 
   ngOnDestroy(){
